@@ -14,7 +14,7 @@ export default class FileUpload extends Component {
     // first we need to get the presigned URL
     // URL is the one you get from AWS API Gateway
     axios(
-      "https://lp0hw93zh2.execute-api.us-west-1.amazonaws.com/uploader/prod/presigned-url?fileName=" +
+      "https://lp0hw93zh2.execute-api.us-west-1.amazonaws.com/prod/presigned-url?fileName=" +
         this.state.fileToUpload.name
     ).then((response) => {
       // Getting the url from response
