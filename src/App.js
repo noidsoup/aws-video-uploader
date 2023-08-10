@@ -14,8 +14,8 @@ function App() {
     const REGION = "us-west-1";
 
     AWS.config.update({
-      accessKeyId: "AKIA5ODJEIJEWOF6EKUK",
-      secretAccessKey: "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",
+      accessKeyId: "",
+      secretAccessKey: "",
     });
     const s3 = new AWS.S3({
       params: { Bucket: S3_BUCKET },
@@ -47,6 +47,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
+          <p>{process.env.REACT_APP_MAIN_TEXT}</p>
           <input type="file" onChange={handleFileChange} />
           <button onClick={uploadFile}>Upload</button>
         </div>
