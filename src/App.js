@@ -1,9 +1,10 @@
-import { useState } from "react";
-import AWS from "aws-sdk";
+//mport { useState } from "react";
+//import AWS from "aws-sdk";
 import "./App.css";
+import FileUploader from "./FileUploader";
 
 function App() {
-  const [file, setFile] = useState(null);
+  /* const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setFile(file);
@@ -42,15 +43,15 @@ function App() {
       alert("File uploaded successfully.");
     });
   };
-
+ */
   return (
     <div className="App">
       <header className="App-header">
-        <div>
-          <p>{process.env.REACT_APP_MAIN_TEXT}</p>
+        {/*         <div>
           <input type="file" onChange={handleFileChange} />
           <button onClick={uploadFile}>Upload</button>
-        </div>
+        </div> */}
+        <FileUploader />
       </header>
     </div>
   );
