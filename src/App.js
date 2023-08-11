@@ -1,5 +1,6 @@
 //mport { useState } from "react";
 //import AWS from "aws-sdk";
+import axios from "axios";
 import "./App.css";
 import FileUploader from "./FileUploader";
 
@@ -43,7 +44,17 @@ function App() {
       alert("File uploaded successfully.");
     });
   };
- */
+*/
+  const axiosUploader = () => {
+    axios({
+      method: "post",
+      contentType: "application/json",
+      url:
+        "https://3cgjoex7mf.execute-api.us-west-1.amazonaws.com/prod/uploader",
+    }).then((response) => {
+      console.log("----------", response);
+    });
+  };
   return (
     <div className="App">
       <header className="App-header">
@@ -51,6 +62,7 @@ function App() {
           <input type="file" onChange={handleFileChange} />
           <button onClick={uploadFile}>Upload</button>
         </div> */}
+        ]{axiosUploader()}
         <FileUploader />
       </header>
     </div>

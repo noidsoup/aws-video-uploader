@@ -13,32 +13,13 @@ export default class FileUpload extends Component {
     // When the upload file button is clicked,
     // first we need to get the presigned URL
     // URL is the one you get from AWS API Gateway
-    axios(
-      "https://lp0hw93zh2.execute-api.us-west-1.amazonaws.com/prod/presigned-url?fileName=" +
-        this.state.fileToUpload.name
-    ).then((response) => {
-      // Getting the url from response
-      const url = response.data.fileUploadURL;
-
-      // Initiating the PUT request to upload file
-      axios({
-        method: "PUT",
-        url: url,
-        data: this.state.fileToUpload,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-        .then((res) => {
-          this.setState({
-            uploadSuccess: "File upload successfull",
-            error: undefined,
-          });
-        })
-        .catch((err) => {
-          this.setState({
-            error: "Error Occured while uploading the file",
-            uploadSuccess: undefined,
-          });
-        });
+    axios({
+      method: "post",
+      contentType: "application/json",
+      url:
+        "https://3cgjoex7mf.execute-api.us-west-1.amazonaws.com/prod/uploader",
+    }).then((response) => {
+      console.log("----------", response);
     });
   }
   render() {
@@ -48,27 +29,15 @@ export default class FileUpload extends Component {
         <div>
           <form>
             <div className="form-group">
-              <input
-                type="file"
-                className="form-control-file"
-                id="fileUpload"
-                onChange={(e) => {
-                  this.setState({
-                    fileToUpload: e.target.files[0],
-                  });
+              <button
+                type="button"
+                className="btn btn-light"
+                onClick={(e) => {
+                  this.uploadFile();
                 }}
-              />
-              {this.state.fileToUpload ? (
-                <button
-                  type="button"
-                  className="btn btn-light"
-                  onClick={(e) => {
-                    this.uploadFile();
-                  }}
-                >
-                  Upload your file
-                </button>
-              ) : null}
+              >
+                button
+              </button>
               <div>
                 <span>
                   {this.state.uploadSuccess ? "File Upload Successfully" : ""}
