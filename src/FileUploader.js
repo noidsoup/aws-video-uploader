@@ -18,22 +18,19 @@ export default class FileUpload extends Component {
     // console.log(this.state.fileToUpload.name);
     axios
       .get(
-        "https://vzbougmxpi.execute-api.us-west-1.amazonaws.com/prod/presigned?fileName=" +
-          this.state.fileToUpload.name
+        "https://qoc0teho5i.execute-api.us-west-1.amazonaws.com/default/nicholas-test-lambda"
       )
       .then((response) => {
         console.log("-----response-----", response);
         // Getting the url from response
-        const url = response.data.fileUploadURL;
-
-        console.log(this.state.fileToUpload);
-
+        const url = response.data.uploadURL;
+        console.log("------url----", url);
         // Initiating the PUT request to upload file
         axios({
           method: "PUT",
+          headers: { "content-type": "image/jpeg" },
           url: url,
           data: this.state.fileToUpload,
-          headers: { "Content-Type": "application/octet-stream" },
         })
           .then((res) => {
             console.log("-----PUT-----", res);
