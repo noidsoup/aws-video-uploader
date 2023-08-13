@@ -11,21 +11,13 @@ export default class FileUpload extends Component {
     message: undefined,
   };
   uploadFile() {
-    // When the upload file button is clicked,
-    // first we need to get the presigned URL
-    // URL is the one you get from AWS API Gateway
-
-    // console.log(this.state.fileToUpload.name);
     axios
       .get(
         "https://1unnp838pa.execute-api.us-west-1.amazonaws.com/default/lambda-video-uploader-test"
       )
       .then((response) => {
-        console.log("-----response-----", response);
         // Getting the url from response
         const url = response.data.uploadURL;
-        console.log("------url----", url);
-        // Initiating the PUT request to upload file
         axios({
           method: "PUT",
           headers: { "content-type": "video/mp4" },
