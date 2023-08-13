@@ -18,7 +18,7 @@ export default class FileUpload extends Component {
     // console.log(this.state.fileToUpload.name);
     axios
       .get(
-        "https://qoc0teho5i.execute-api.us-west-1.amazonaws.com/default/nicholas-test-lambda"
+        "https://1unnp838pa.execute-api.us-west-1.amazonaws.com/default/lambda-video-uploader-test"
       )
       .then((response) => {
         console.log("-----response-----", response);
@@ -28,7 +28,7 @@ export default class FileUpload extends Component {
         // Initiating the PUT request to upload file
         axios({
           method: "PUT",
-          headers: { "content-type": "image/jpeg" },
+          headers: { "content-type": "video/mp4" },
           url: url,
           data: this.state.fileToUpload,
         })
